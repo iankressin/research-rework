@@ -1,0 +1,15 @@
+<script>
+	import { ArrowUpRight } from 'lucide-svelte';
+	import DarkModeToggle from './DarkModeToggle.svelte';
+</script>
+
+<div class="flex justify-between items-center px-3 md:px-12 py-4 md:py-6">
+	<p>2077 Research</p>
+	<div class="flex items-center gap-4">
+		<DarkModeToggle />
+		<a href="https://2077.xyz" target="_blank" class="flex items-center gap-1">
+			2077.xyz
+			<ArrowUpRight class="w-5 h-5" />
+		</a>
+	</div>
+</div>

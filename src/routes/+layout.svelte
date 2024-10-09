@@ -1,7 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 	import { onMount } from 'svelte';
-	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
+	import DarkModeToggle from '$lib/components/ui/DarkModeToggle.svelte';
+	import Nav from '$lib/components/ui/Nav.svelte';
 
 	const { children } = $props();
 
@@ -13,9 +14,11 @@
 	});
 </script>
 
-<div class="p-3 md:p-12 transition-colors duration-300">
-	<DarkModeToggle />
-	{@render children()}
+<div>
+	<Nav />
+	<div class="px-3 md:px-12 transition-colors duration-300">
+		{@render children()}
+	</div>
 </div>
 
 <style>
