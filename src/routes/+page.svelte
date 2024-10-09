@@ -1,17 +1,22 @@
 <script lang="ts">
+	import ArticleSpotlight from '$lib/components/ArticleSpotlight.svelte';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
 	const articles = $derived(data.articles);
 </script>
 
-<!-- These heights are arbitrary and never repeated throughout the website, that's why they're not in tailwind config -->
-<div
-	class="h-[420px] md:h-[714px] bg-gray-100 relative gradient border-b border-black flex flex-col justify-end"
->
-	<h1 class="text-3xl md:text-6xl font-medium leading-tight max-w-4xl mb-12 px-10">
-		Comprehensive and insightful research within the Ethereum and broader crypto landscape.
-	</h1>
+<div class="flex flex-col gap-14">
+	<!-- These heights are arbitrary and never repeated throughout the website, that's why they're not in tailwind config -->
+	<div
+		class="h-[420px] md:h-[714px] bg-gray-100 relative gradient border-b border-black flex flex-col justify-end"
+	>
+		<h1 class="text-3xl md:text-6xl font-medium leading-tight max-w-4xl mb-12 px-10">
+			Comprehensive and insightful research within the Ethereum and broader crypto landscape.
+		</h1>
+	</div>
+
+	<ArticleSpotlight article={articles[0]} />
 </div>
 
 <style scoped>
