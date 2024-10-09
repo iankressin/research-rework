@@ -1,9 +1,11 @@
 <script lang="ts">
-	import ArticleSpotlight from '$lib/components/ArticleSpotlight.svelte';
+	import ArticleSpotlight from '$lib/components/ui/ArticleSpotlight.svelte';
+	import ArticleList from '$lib/components/ui/ArticleList.svelte';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
 	const articles = $derived(data.articles);
+	const articleCategories = $derived(data.articleCategories);
 </script>
 
 <div class="flex flex-col gap-14">
@@ -17,6 +19,7 @@
 	</div>
 
 	<ArticleSpotlight article={articles[0]} />
+	<ArticleList {articles} {articleCategories} />
 </div>
 
 <style scoped>
