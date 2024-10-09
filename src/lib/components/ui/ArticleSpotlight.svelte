@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Article } from '$lib/types/article';
-	import Badge from './ui/badge/badge.svelte';
+	import Badge from './badge/badge.svelte';
 
 	const { article }: { article: Article } = $props();
 </script>
