@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ArticleSpotlight from '$lib/components/ui/ArticleSpotlight.svelte';
 	import ArticleList from '$lib/components/ui/ArticleList.svelte';
+	import NewsletterBanner from '$lib/components/ui/NewsletterBanner.svelte';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
@@ -20,6 +21,7 @@
 
 	<ArticleSpotlight article={articles[0]} />
 	<ArticleList {articles} {articleCategories} />
+	<NewsletterBanner />
 </div>
 
 <style scoped>
