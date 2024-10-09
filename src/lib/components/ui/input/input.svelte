@@ -3,7 +3,7 @@
 	import type { Snippet } from 'svelte';
 
 	const Variant = {
-		regular: 'px-3 py-2',
+		regular: 'px-3 py-2 h-12',
 		small: 'px-4 py-1 h-10',
 		custom: ''
 	} as const;
@@ -37,14 +37,17 @@
 	} = $props();
 </script>
 
-{#if icon}
+{#if icon || button}
 	<div
 		class={cn(
 			`flex flex-grow items-center gap-2 border border-black bg-white rounded-full focus:outline-none ${Variant[variant]}`,
-			className
+			className,
+			button && 'pr-1'
 		)}
 	>
-		{@render icon()}
+		{#if icon}
+			{@render icon()}
+		{/if}
 		<input
 			type={type || 'text'}
 			{id}
