@@ -8,15 +8,7 @@ export const load: PageServerLoad = async () => {
 	);
 
 	return {
-		articles: [
-			...articles,
-			...articles,
-			...articles,
-			...articles,
-			...articles,
-			...articles,
-			...articles
-		],
+		articles,
 		articleCategories
 	};
 };
