@@ -100,7 +100,7 @@
 	</div>
 
 	{#if visibleArticles < filteredArticles.length}
-		<div class="flex justify-center mt-8">
+		<div class="flex justify-center mt-2">
 			<button
 				onclick={loadMore}
 				class="flex items-center gap-3 px-4 py-2 text-2xl transition-colors duration-300 group"
