@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
 	darkMode: ['class'],
@@ -56,10 +57,20 @@ const config: Config = {
 			fontFamily: {
 				inter: ['Inter Variable', 'sans-serif'],
 				menlo: ['Menlo Regular', 'monospace'],
-				sohne: ['Soehne', 'sans-serif']
+				soehne: ['Soehne', 'sans-serif']
 			}
 		}
-	}
+	},
+	plugins: [
+		plugin(function ({ addBase, theme }) {
+			addBase({
+				body: {
+					color: theme('colors.black'),
+					backgroundColor: theme('colors.white')
+				}
+			});
+		})
+	]
 };
 
 export default config;

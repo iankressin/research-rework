@@ -13,25 +13,18 @@
 <div class="flex flex-col gap-14">
 	<!-- These heights are arbitrary and never repeated throughout the website, that's why they're not in tailwind config -->
 	<div
-		class="h-[420px] md:h-[714px] bg-gray-100 relative gradient border-b border-black flex flex-col justify-end"
+		class="font-soehne h-[420px] md:h-[714px] relative border-b flex flex-col justify-end bg-gradient-to-b from-gray-100 to-transparent dark:from-secondary dark:to-transparent"
 	>
-		<h1 class="font-sohne text-3xl md:text-6xl font-medium leading-tight max-w-4xl mb-12 px-10">
+		<!-- leading-[69px] is arbitrary and never repeated throughout the website, that's why it's not in tailwind config -->
+		<h1
+			class="font-soehne text-3xl md:leading-[69px] md:text-6xl font-medium max-w-[843px] mb-12 px-10"
+		>
 			Comprehensive and insightful research within the Ethereum and broader crypto landscape.
 		</h1>
 	</div>
 
-	<ArticleSpotlight article={articles[0]} />
+	<ArticleSpotlight article={articles[1]} />
 	<ArticleList {articles} {articleCategories} />
 	<NewsletterBanner />
 	<Footer />
 </div>
-
-<style scoped>
-	.gradient {
-		background: linear-gradient(180deg, #eef0f2 0%, rgba(238, 240, 242, 0) 80%);
-	}
-
-	h1 {
-		font-family: 'Soehne', sans-serif;
-	}
-</style>

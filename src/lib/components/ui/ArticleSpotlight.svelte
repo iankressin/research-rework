@@ -15,13 +15,13 @@
 				<Badge variant="outline">{category.name}</Badge>
 			{/each}
 		</div>
-		<h1 class="text-5xl font-medium max-md:text-3xl">
+		<h1 class="font-soehne text-5xl font-medium max-md:text-3xl leading-[57px]">
 			{article.title}
 		</h1>
-		<p class="leading-6 text-neutral-950">
+		<p class="leading-7 dark:text-white">
 			{article.summary}
 		</p>
-		<p class="font-medium text-neutral-950">
+		<p class="font-medium dark:text-white">
 			By {article.authors?.map((author) => author.username).join(', ')}
 		</p>
 	</div>

@@ -59,9 +59,11 @@
 </script>
 
 <div>
-	<h2 class="text-3xl md:text-5xl font-medium leading-9 mb-4 md:mb-8">Latest Research</h2>
+	<h2 class="text-3xl md:text-5xl font-medium leading-9 mb-4 md:mb-8 font-soehne">
+		Latest Research
+	</h2>
 
-	<div class="flex flex-col md:flex-row gap-2 border-y py-4 md:py-6 border-black mb-4 md:mb-12">
+	<div class="flex flex-col md:flex-row gap-2 border-y py-4 md:py-6 mb-4 md:mb-12">
 		<Input class="grow-0" type="text" placeholder="Search" bind:value={search} variant="small">
 			{#snippet icon()}
 				<Search class="w-4 h-4" />
@@ -107,7 +109,7 @@
 			>
 				Load more
 				<div
-					class="border border-black rounded-full p-2 h-10 w-10 flex items-center justify-center group-hover:bg-black group-hover:text-white group-hover:translate-y-1 transition-transform duration-300"
+					class="border rounded-full p-2 h-10 w-10 flex items-center justify-center group-hover:bg-primary group-hover:text-accent group-hover:translate-y-1 transition-transform duration-300"
 				>
 					<ArrowDown class="h-10 w-10 rounded-full" style="stroke-width: 1.4" />
 				</div>
@@ -128,7 +130,7 @@
 					<Badge variant="outline">{category.name}</Badge>
 				{/each}
 			</div>
-			<h2 class="mt-4 text-3xl font-medium leading-9">{article.title}</h2>
+			<h1 class="font-soehne mt-4 text-2xl md:text-3xl font-medium leading-9">{article.title}</h1>
 			<p class="mt-4 leading-6 text-neutral-950">{article.summary}</p>
 			<p class="mt-4 font-medium text-neutral-950">
 				By {article.authors?.map((author) => author.username).join(', ')}
