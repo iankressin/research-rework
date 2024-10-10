@@ -40,7 +40,7 @@
 {#if icon || button}
 	<div
 		class={cn(
-			`flex flex-grow items-center gap-2 border border-black bg-white rounded-full focus:outline-none ${Variant[variant]}`,
+			`flex flex-grow items-center gap-2 border border-default bg-transparent rounded-full focus:outline-none ${Variant[variant]}`,
 			className,
 			button && 'pr-1'
 		)}
@@ -57,7 +57,7 @@
 			{placeholder}
 			{min}
 			{disabled}
-			class="flex-grow focus:outline-none placeholder-gray-400 disabled:text-gray disabled:bg-white"
+			class="flex-grow focus:outline-none placeholder-gray-400 disabled:text-gray bg-transparent text-primary"
 		/>
 		{#if button}
 			{@render button()}
@@ -74,7 +74,7 @@
 		{min}
 		{disabled}
 		class={cn(
-			`${disabled ? 'text-gray-400 bg-white' : 'text-gray-700'} flex-grow ${Variant[variant]} border border-gray-300 rounded-lg`,
+			`${disabled ? 'text-gray-400' : 'text-primary'} flex-grow ${Variant[variant]} border border-default rounded-lg bg-transparent`,
 			className
 		)}
 	/>

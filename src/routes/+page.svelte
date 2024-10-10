@@ -13,7 +13,7 @@
 <div class="flex flex-col gap-14">
 	<!-- These heights are arbitrary and never repeated throughout the website, that's why they're not in tailwind config -->
 	<div
-		class="font-soehne h-[420px] md:h-[714px] bg-gray-100 relative gradient border-b border-black flex flex-col justify-end"
+		class="font-soehne h-[420px] md:h-[714px] relative border-b flex flex-col justify-end bg-gradient-to-b from-gray-100 to-transparent dark:from-secondary dark:to-transparent"
 	>
 		<!-- leading-[69px] is arbitrary and never repeated throughout the website, that's why it's not in tailwind config -->
 		<h1
@@ -23,14 +23,8 @@
 		</h1>
 	</div>
 
-	<ArticleSpotlight article={articles[0]} />
+	<ArticleSpotlight article={articles[1]} />
 	<ArticleList {articles} {articleCategories} />
 	<NewsletterBanner />
 	<Footer />
 </div>
-
-<style>
-	.gradient {
-		background: linear-gradient(180deg, #eef0f2 0%, rgba(238, 240, 242, 0) 80%);
-	}
-</style>
