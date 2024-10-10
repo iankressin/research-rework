@@ -55,7 +55,8 @@ const config: Config = {
 			},
 			fontFamily: {
 				inter: ['Inter Variable', 'sans-serif'],
-				menlo: ['Menlo Regular', 'monospace']
+				menlo: ['Menlo Regular', 'monospace'],
+				sohne: ['Soehne', 'sans-serif']
 			}
 		}
 	}
