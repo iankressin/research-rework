@@ -15,7 +15,7 @@
 				<Badge variant="outline">{category.name}</Badge>
 			{/each}
 		</div>
-		<h1 class="text-5xl font-medium max-md:text-3xl">
+		<h1 class="font-soehne text-5xl font-medium max-md:text-3xl">
 			{article.title}
 		</h1>
 		<p class="leading-6 text-neutral-950">

@@ -14,7 +14,7 @@
 	<div
 		class="flex flex-col justify-center items-center flex-1 shrink self-stretch my-auto w-full basis-0 min-w-[240px] max-md:max-w-full"
 	>
-		<h1 class="text-5xl font-medium leading-tight max-md:max-w-full max-md:text-3xl">
+		<h1 class="font-soehne text-5xl font-medium leading-tight max-md:max-w-full max-md:text-3xl">
 			Your Ethereum Edge
 		</h1>
 		<p class="mt-2.5 text-lg max-md:max-w-full text-center">
