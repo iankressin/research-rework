@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Article } from '$lib/types/article';
+	import type { ArticleMetadata } from '$lib/types/article';
 	import Badge from './badge/badge.svelte';
 
-	const { article }: { article: Article } = $props();
+	const { article }: { article: ArticleMetadata } = $props();
 </script>
 
 <div class="flex flex-col lg:flex-row">

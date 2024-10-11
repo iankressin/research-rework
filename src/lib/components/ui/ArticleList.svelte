@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Article } from '$lib/types/article';
+	import type { ArticleMetadata } from '$lib/types/article';
 	import { Search, ArrowDown } from 'lucide-svelte';
 	import Badge from './badge/badge.svelte';
 	import Input from './input/input.svelte';
@@ -12,7 +12,7 @@
 		articles,
 		articleCategories
 	}: {
-		articles: Article[];
+		articles: ArticleMetadata[];
 		articleCategories: string[];
 	} = $props();
 	let search = $state('');
@@ -118,23 +118,25 @@
 	{/if}
 </div>
 
-{#snippet articleCard(article: Article)}
+{#snippet articleCard(article: ArticleMetadata)}
 	<div transition:slide={{ duration: 300 }} class="flex flex-col justify-center h-fit">
-		<div class="flex flex-col w-full">
-			<img src={article.thumb} alt={article.title} class="aspect-square w-full object-cover" />
-		</div>
-
-		<div class="flex flex-col py-6 w-full">
-			<div class="flex gap-1 items-start w-full text-sm">
-				{#each article.categories as category}
-					<Badge variant="outline">{category.name}</Badge>
-				{/each}
+		<a href={`/article/${article.slug}`}>
+			<div class="flex flex-col w-full">
+				<img src={article.thumb} alt={article.title} class="aspect-square w-full object-cover" />
 			</div>
-			<h1 class="font-soehne mt-4 text-2xl md:text-3xl font-medium leading-9">{article.title}</h1>
-			<p class="mt-4 leading-6">{article.summary}</p>
-			<p class="mt-4 font-medium">
-				By {article.authors?.map((author) => author.username).join(', ')}
-			</p>
-		</div>
+
+			<div class="flex flex-col py-6 w-full">
+				<div class="flex gap-1 items-start w-full text-sm">
+					{#each article.categories as category}
+						<Badge variant="outline">{category.name}</Badge>
+					{/each}
+				</div>
+				<h1 class="font-soehne mt-4 text-2xl md:text-3xl font-medium leading-9">{article.title}</h1>
+				<p class="mt-4 leading-6">{article.summary}</p>
+				<p class="mt-4 font-medium">
+					By {article.authors?.map((author) => author.username).join(', ')}
+				</p>
+			</div>
+		</a>
 	</div>
 {/snippet}
