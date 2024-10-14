@@ -8,14 +8,23 @@ const CategorySchema = z.object({
 export const ArticleMetadaSchema = z.object({
 	id: z.string(),
 	title: z.string(),
-	authors: z.array(z.object({ username: z.string() })).optional(),
+	authors: z
+		.array(
+			z.object({
+				username: z.string(),
+				id: z.string(),
+				full_name: z.string(),
+				twitter_username: z.string().nullable()
+			})
+		)
+		.optional(),
 	content: z.string().optional(),
 	views: z.number().optional(),
 	summary: z.string(),
 	categories: z.array(CategorySchema),
 	thumb: z.string(),
 	slug: z.string()
-});
+})
 
 export const ArticleMetadataArraySchema = z.array(ArticleMetadaSchema);
 export type ArticleMetadata = z.infer<typeof ArticleMetadaSchema>;
