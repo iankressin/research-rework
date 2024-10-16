@@ -5,7 +5,6 @@
 	import Footer from '$lib/components/ui/Footer.svelte';
 	import SocialShare from '$lib/components/ui/SocialShare.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
-	import DOMPurify from 'dompurify';
 	import Prism from 'prismjs';
 	import 'prismjs/themes/prism.css';
 
