@@ -59,7 +59,15 @@ const config: Config = {
 				inter: ['Inter Variable', 'sans-serif'],
 				menlo: ['Menlo Regular', 'monospace'],
 				soehne: ['Soehne', 'sans-serif']
-			}
+			},
+			letterSpacing: {
+				tightest: '-1.5px',
+				tighter: '-1px',
+				tight: '-0.25px'
+			},
+			lineHeight: {
+				'58': '58px',
+			},
 		}
 	},
 	plugins: [

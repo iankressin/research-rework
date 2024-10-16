@@ -121,7 +121,7 @@
 {#snippet articleCard(article: Article)}
 	<div transition:slide={{ duration: 300 }} class="flex flex-col justify-center h-fit">
 		<div class="flex flex-col w-full">
-			<a href={`/articles/${article.slug}`} class="block">
+			<a href={`/article/${article.slug}`} class="block">
 				<img src={article.thumb} alt={article.title} class="aspect-square w-full object-cover" />
 			</a>
 		</div>
@@ -133,11 +133,11 @@
 				{/each}
 			</div>
 			<h1 class="font-soehne mt-4 text-2xl md:text-3xl font-medium leading-9">
-				<a href={`/${article.slug}`} class="hover:underline">{article.title}</a>
+				<a href={`/article/${article.slug}`} class="hover:underline">{article.title}</a>
 			</h1>
 			<p class="mt-4 leading-6">{article.summary}</p>
 			<p class="mt-4 font-medium">
-				By {article.authors?.map((author) => author.full_name || author.username).join(', ')}
+				By {article.authors?.map((author) => author.fullName || author.username).join(', ')}
 			</p>
 		</div>
 	</div>

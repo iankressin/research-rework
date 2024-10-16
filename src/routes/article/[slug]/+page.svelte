@@ -5,6 +5,7 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 	import TableOfContents from '$lib/components/ui/TableOfContents.svelte';
+	import NewsletterBanner from '$lib/components/ui/NewsletterBanner.svelte';
 
 	const { data }: { data: PageData } = $props();
 </script>
@@ -19,6 +20,7 @@
 	<header
 		class="flex justify-between flex-col p-10 border-b max-md:px-5 bg-gradient-to-b from-gray-100 to-transparent dark:from-secondary dark:to-transparent"
 	>
+	
 		<div
 			class="flex gap-2 justify-center items-center px-2 w-10 h-10 border border-solid rounded-full mb-32 md:mb-44"
 		>
@@ -94,31 +96,18 @@
 			<TableOfContents tableOfContents={article.tableOfContents} />
 		</div>
 		<div
-			class="w-full md:w-3/5 max-w-screen-md leading-8 flex flex-col [&>h1]:text-5xl [&>h1]:font-medium [&>h1]:mb-6 [&>h1]:mt-16 text-primary
-            [&>h2]:text-3xl [&>h2]:font-medium [&>h2]:mt-8 [&>h2]:mb-4 [&>p]:text-lg [&>p]:mb-6
-            [&>h3]:text-2xl [&>h3]:font-medium [&>h3]:mt-6 [&>h3]:mb-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2
-            [&>ul]:text-lg [&>ul]:mb-6
-            [&>li]:leading-8 [&>a]:underline
+			class="text-primary w-full md:w-3/5 max-w-screen-md leading-8 flex flex-col
+			[&>h1]:text-5xl [&>h1]:font-medium [&>h1]:mb-6 [&>h1]:mt-16 [&_h1]:leading-58 [&_h1]:tracking-tightest
+            [&>h2]:text-3xl [&>h2]:font-medium [&>h2]:mt-8 [&>h2]:mb-4  [&_h1]:leading-9 [&_h2]:tracking-tight
+            [&>h3]:text-2xl [&>h3]:font-medium [&>h3]:mt-6 [&>h3]:mb-4
             [&>h4]:text-xl [&>h4]:font-medium [&>h4]:mb-3
-			font-inter text-base leading-[24px] prose max-w-full
-			[&_h1]:text-5xl [&_h1]:font-medium [&_h1]:leading-10 [&_h1]:tracking-tightest [&_h1]:pt-10 [&_h1]:pb-5
-			[&_h2]:text-3xl [&_h2]:font-medium [&_h2]:leading-9 [&_h2]:tracking-tighter [&_h2]:py-5
-			[&_h3]:text-2xl [&_h3]:font-medium [&_h3]:leading-7 [&_h3]:tracking-tighter md:[&_h3]:text-3xl md:[&_h3]:py-4
-			[&_h4]:text-xl [&_h4]:font-medium [&_h4]:py-3
-			[&_p]:text-base [&_p]:font-regular [&_p]:leading-6 [&_p]:tracking-tight [&_p]:pb-4
-			[&_img]:mx-auto [&_img]:block [&_img]:pb-2.5
-			[&_ol]:flex [&_ol]:flex-col [&_ol]:py-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:leading-6 [&_ol]:tracking-tight
-			[&_ul]:flex [&_ul]:flex-col [&_ul]:py-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:leading-6 [&_ul]:tracking-tight
-			[&_a]:underline [&_a]:underline-offset-4
-			[&_table]:mb-6 md:[&_table]:mb-8 [&_table]:w-full md:[&_table]:w-2/3
-			[&_strong]:font-semibold [&_strong]:leading-[24px]
-			[&_em]:font-regular [&_em]:leading-[24px]
-			[&_blockquote]:border-l-4 [&_blockquote]:border-gray-500 [&_blockquote]:pl-4
-			[&_blockquote]:mb-4 [&_blockquote]:italic
-			[&_em:has(img)]:text-xs [&_em:has(img)]:text-gray-400 [&_em:has(img)]:flex [&_em:has(img)]:flex-col
-			[&_em:has(img)]:items-center [&_em:has(img)]:dark:text-gray-200
-			[&_pre]:overflow-x-auto [&_code]:overflow-x-auto
-        	[&_p:has(img):has(em):has(a)]:text-gray-400 [&_p:has(img):has(em):has(a)]:text-center
+			[&>p]:text-lg [&_p]:leading-7 [&_p]:tracking-normal [&_p]:mb-4
+			[&_p:has(img)]:mb-2.5 [&_p:has(img)]:text-center [&_p:has(img)]:text-xs [&_p:has(img)]:text-gray-400
+			[&_ol]:flex [&_ol]:flex-col [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:leading-7 [&_ol]:tracking-normal
+			[&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:text-lg [&>ul]:mb-6
+            [&>li]:leading-8
+			[&>a]:underline
+			[&_img]:mx-auto [&_img]:block
             "
 		>
 			{@html article.content}
