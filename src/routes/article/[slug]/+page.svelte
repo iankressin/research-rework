@@ -100,6 +100,25 @@
             [&>ul]:text-lg [&>ul]:mb-6
             [&>li]:leading-8 [&>a]:underline
             [&>h4]:text-xl [&>h4]:font-medium [&>h4]:mb-3
+			font-inter text-base leading-[24px] prose max-w-full
+			[&_h1]:text-5xl [&_h1]:font-medium [&_h1]:leading-10 [&_h1]:tracking-tightest [&_h1]:pt-10 [&_h1]:pb-5
+			[&_h2]:text-3xl [&_h2]:font-medium [&_h2]:leading-9 [&_h2]:tracking-tighter [&_h2]:py-5
+			[&_h3]:text-2xl [&_h3]:font-medium [&_h3]:leading-7 [&_h3]:tracking-tighter md:[&_h3]:text-3xl md:[&_h3]:py-4
+			[&_h4]:text-xl [&_h4]:font-medium [&_h4]:py-3
+			[&_p]:text-base [&_p]:font-regular [&_p]:leading-6 [&_p]:tracking-tight [&_p]:pb-4
+			[&_img]:mx-auto [&_img]:block [&_img]:pb-2.5
+			[&_ol]:flex [&_ol]:flex-col [&_ol]:py-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:leading-6 [&_ol]:tracking-tight
+			[&_ul]:flex [&_ul]:flex-col [&_ul]:py-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:leading-6 [&_ul]:tracking-tight
+			[&_a]:underline [&_a]:underline-offset-4
+			[&_table]:mb-6 md:[&_table]:mb-8 [&_table]:w-full md:[&_table]:w-2/3
+			[&_strong]:font-semibold [&_strong]:leading-[24px]
+			[&_em]:font-regular [&_em]:leading-[24px]
+			[&_blockquote]:border-l-4 [&_blockquote]:border-gray-500 [&_blockquote]:pl-4
+			[&_blockquote]:mb-4 [&_blockquote]:italic
+			[&_em:has(img)]:text-xs [&_em:has(img)]:text-gray-400 [&_em:has(img)]:flex [&_em:has(img)]:flex-col
+			[&_em:has(img)]:items-center [&_em:has(img)]:dark:text-gray-200
+			[&_pre]:overflow-x-auto [&_code]:overflow-x-auto
+        	[&_p:has(img):has(em):has(a)]:text-gray-400 [&_p:has(img):has(em):has(a)]:text-center
             "
 		>
 			{@html article.content}
