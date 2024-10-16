@@ -11,6 +11,9 @@ importers:
       '@fontsource-variable/inter':
         specifier: ^5.1.0
         version: 5.1.0
+      '@melt-ui/svelte':
+        specifier: ^0.83.0
+        version: 0.83.0(svelte@5.0.0-next.263)
       bits-ui:
         specifier: ^0.21.16
         version: 0.21.16(svelte@5.0.0-next.263)
@@ -20,6 +23,15 @@ importers:
       lucide-svelte:
         specifier: ^0.451.0
         version: 0.451.0(svelte@5.0.0-next.263)
+      postcss:
+        specifier: ^8.4.47
+        version: 8.4.47
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
+      svelte-share-buttons-component:
+        specifier: ^3.0.0
+        version: 3.0.0
       tailwind-merge:
         specifier: ^2.5.3
         version: 2.5.3
@@ -45,6 +57,9 @@ importers:
       '@types/eslint':
         specifier: ^9.6.0
         version: 9.6.1
+      '@types/prismjs':
+        specifier: ^1.26.4
+        version: 1.26.4
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
@@ -328,6 +343,11 @@ packages:
     peerDependencies:
       svelte: '>=3 <5'
 
+  '@melt-ui/svelte@0.83.0':
+    resolution: {integrity: sha512-E7QT+8YSftz+Hdk1W0hNR3f+cnaF2COMWkStn+2u4vk0RO1I9mXRJl+bJD6uhYaH146oxEB+5elu/ABbv6rpsA==}
+    peerDependencies:
+      svelte: ^3.0.0 || ^4.0.0 || ^5.0.0-next.118
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -476,6 +496,9 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
+  '@types/prismjs@1.26.4':
+    resolution: {integrity: sha512-rlAnzkW2sZOjbqZ743IHUhFcvzaGbqijwOu8QZnZCjfQzBqFE3s4lOTJEsxikImav9uzz/42I+O7YUs1mWgMlg==}
+
   '@typescript-eslint/eslint-plugin@8.8.1':
     resolution: {integrity: sha512-xfvdgA8AP/vxHgtgU310+WBnLB4uJQ9XdyP17RebG26rLtDrQJV3ZYrcopX91GrHmMoH8bdSwMRh2a//TiJ1jQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -618,6 +641,11 @@ packages:
     resolution: {integrity: sha512-Izi8RQcffqCeNVgFigKli1ssklIbpHnCYc6AknXGYoB6grJqyeby7jv12JUQgmTAnIDnbck1uxksT4dzN3PWBA==}
     engines: {node: '>=12'}
 
+  atob@2.1.2:
+    resolution: {integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==}
+    engines: {node: '>= 4.5.0'}
+    hasBin: true
+
   autoprefixer@10.4.20:
     resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
     engines: {node: ^10 || ^12 || >=14}
@@ -717,6 +745,9 @@ packages:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
 
+  css@3.0.0:
+    resolution: {integrity: sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==}
+
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
@@ -730,6 +761,10 @@ packages:
     peerDependenciesMeta:
       supports-color:
         optional: true
+
+  decode-uri-component@0.2.2:
+    resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
+    engines: {node: '>=0.10'}
 
   deep-eql@5.0.2:
     resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
@@ -914,6 +949,9 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
+  from@0.1.7:
+    resolution: {integrity: sha512-twe20eF1OxVxp/ML/kq2p1uc6KvFK/+vs8WjEbeKmV2He22MKm7YF2ANIt+EOqhJ5L3K/SuuPhk0hWQDjOM23g==}
+
   fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -975,9 +1013,17 @@ packages:
   import-meta-resolve@4.1.0:
     resolution: {integrity: sha512-I6fiaX09Xivtk+THaMfAwnA3MVA5Big1WHF1Dfx9hFuvNIWpXnorlkzhcQf6ehrqQiiZECRt1poOAkPmer3ruw==}
 
+  import@0.0.6:
+    resolution: {integrity: sha512-QPhTdjy9J4wUzmWSG7APkSgMFuPGPw+iJTYUblcfc2AfpqaatbwgCldK1HoLYx+v/+lWvab63GWZtNkcnj9JcQ==}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
+
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
+
+  inherits@2.0.4:
+    resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
 
   is-binary-path@2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
@@ -1143,6 +1189,9 @@ packages:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
     engines: {node: '>= 6'}
 
+  optimist@0.3.7:
+    resolution: {integrity: sha512-TCx0dXQzVtSCg2OgY/bO9hjM9cV4XYx09TVK+s3+FhkjT6LovsLe+pPMzpWf+6yXK/hUizs2gUoTw3jHM0VaTQ==}
+
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -1289,6 +1338,10 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  prismjs@1.29.0:
+    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+    engines: {node: '>=6'}
+
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -1362,6 +1415,14 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
+  source-map-resolve@0.6.0:
+    resolution: {integrity: sha512-KXBr9d/fO/bWo97NXsPIAW1bFSBOuCnjbNTBMO7N59hsv5i9yzRDfcYwwt0l04+VqnKC+EwzvJZIP/qkuMgR/w==}
+    deprecated: See https://github.com/lydell/source-map-resolve#deprecated
+
+  source-map@0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    engines: {node: '>=0.10.0'}
+
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
 
@@ -1417,6 +1478,9 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
+
+  svelte-share-buttons-component@3.0.0:
+    resolution: {integrity: sha512-EOs3uqfM6tmDZzXppfTLJtzd1M0Dnt44oPSbw+2CUHbkziiv4PRPRtLu4k3JGQj9j0R2n+JcwDPfJTixeinXdg==}
 
   svelte@5.0.0-next.263:
     resolution: {integrity: sha512-vusQUBK3fIazd8D1uDP/r2y9aHNCKwmsG8rjOFQ5dgx7w/uuHF29tt+onVFlbRgaudlFwpjLNo3OVylrhD6zoQ==}
@@ -1602,6 +1666,10 @@ packages:
   word-wrap@1.2.5:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
+
+  wordwrap@0.0.3:
+    resolution: {integrity: sha512-1tMA907+V4QmxV7dbRvb4/8MaRALK6q9Abid3ndMYnbyo8piisCmeONVqVSXqQA3KaP4SLt5b7ud6E2sqP8TFw==}
+    engines: {node: '>=0.4.0'}
 
   wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
@@ -1811,6 +1879,16 @@ snapshots:
       nanoid: 5.0.7
       svelte: 5.0.0-next.263
 
+  '@melt-ui/svelte@0.83.0(svelte@5.0.0-next.263)':
+    dependencies:
+      '@floating-ui/core': 1.6.8
+      '@floating-ui/dom': 1.6.11
+      '@internationalized/date': 3.5.6
+      dequal: 2.0.3
+      focus-trap: 7.6.0
+      nanoid: 5.0.7
+      svelte: 5.0.0-next.263
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -1939,6 +2017,8 @@ snapshots:
   '@types/estree@1.0.6': {}
 
   '@types/json-schema@7.0.15': {}
+
+  '@types/prismjs@1.26.4': {}
 
   '@typescript-eslint/eslint-plugin@8.8.1(@typescript-eslint/parser@8.8.1(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3))(eslint@9.12.0(jiti@1.21.6))(typescript@5.6.3)':
     dependencies:
@@ -2103,6 +2183,8 @@ snapshots:
 
   assertion-error@2.0.1: {}
 
+  atob@2.1.2: {}
+
   autoprefixer@10.4.20(postcss@8.4.47):
     dependencies:
       browserslist: 4.24.0
@@ -2205,11 +2287,19 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
+  css@3.0.0:
+    dependencies:
+      inherits: 2.0.4
+      source-map: 0.6.1
+      source-map-resolve: 0.6.0
+
   cssesc@3.0.0: {}
 
   debug@4.3.7:
     dependencies:
       ms: 2.1.3
+
+  decode-uri-component@0.2.2: {}
 
   deep-eql@5.0.2: {}
 
@@ -2433,6 +2523,8 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
+  from@0.1.7: {}
+
   fsevents@2.3.2:
     optional: true
 
@@ -2483,7 +2575,13 @@ snapshots:
 
   import-meta-resolve@4.1.0: {}
 
+  import@0.0.6:
+    dependencies:
+      optimist: 0.3.7
+
   imurmurhash@0.1.4: {}
+
+  inherits@2.0.4: {}
 
   is-binary-path@2.1.0:
     dependencies:
@@ -2611,6 +2709,10 @@ snapshots:
 
   object-hash@3.0.0: {}
 
+  optimist@0.3.7:
+    dependencies:
+      wordwrap: 0.0.3
+
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -2726,6 +2828,8 @@ snapshots:
 
   prettier@3.3.3: {}
 
+  prismjs@1.29.0: {}
+
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
@@ -2802,6 +2906,13 @@ snapshots:
 
   source-map-js@1.2.1: {}
 
+  source-map-resolve@0.6.0:
+    dependencies:
+      atob: 2.1.2
+      decode-uri-component: 0.2.2
+
+  source-map@0.6.1: {}
+
   stackback@0.0.2: {}
 
   std-env@3.7.0: {}
@@ -2865,6 +2976,12 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.4.47)
     optionalDependencies:
       svelte: 5.0.0-next.263
+
+  svelte-share-buttons-component@3.0.0:
+    dependencies:
+      css: 3.0.0
+      from: 0.1.7
+      import: 0.0.6
 
   svelte@5.0.0-next.263:
     dependencies:
@@ -3057,6 +3174,8 @@ snapshots:
       stackback: 0.0.2
 
   word-wrap@1.2.5: {}
+
+  wordwrap@0.0.3: {}
 
   wrap-ansi@7.0.0:
     dependencies:
