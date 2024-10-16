@@ -15,7 +15,7 @@
 
 <div>
 	<Nav />
-	<div class="px-3 md:px-12 transition-colors duration-300 max-w-screen-2xl mx-auto">
+	<div class="transition-colors duration-300 max-w-screen-2xl mx-auto">
 		{@render children()}
 	</div>
 </div>
