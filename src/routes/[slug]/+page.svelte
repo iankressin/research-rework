@@ -19,8 +19,20 @@
 
 	let currentURL = '';
 
-	onMount(() => {
+	async function loadPrismLanguages(languages: string[]) {
+		const promises = languages.map(lang => import(`prismjs/components/prism-${lang}`));
+		await Promise.all(promises);
+	}
+
+	onMount(async () => {
 		currentURL = window.location.href;
+
+		// Extract languages from the article content using regex
+		const languageMatches = data.article.content.match(/language-([a-zA-Z]+)/g) || [];
+		const requiredLanguages = [...new Set(languageMatches.map(match => match.replace('language-', '')))];
+
+		// Dynamically import the required Prism language components
+		await loadPrismLanguages(requiredLanguages);
 
 		Prism.highlightAll();
 	});
