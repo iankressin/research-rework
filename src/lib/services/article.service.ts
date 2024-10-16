@@ -1,7 +1,7 @@
 import { ArticleListResponseSchema, ArticleDetailResponseSchema, type ArticleListItem, type ArticleDetail } from '$lib/types/article';
 
 // Function to handle fetching data from the API
-const fetchFromApi = async (url: string): Promise<unknown> => {
+const fetchFromApi = async <T>(url: string): Promise<T> => {
 	try {
 		const res = await fetch(url);
 		if (!res.ok) {

@@ -29,7 +29,7 @@
 		currentURL = window.location.href;
 
 		// Extract languages from the article content using regex
-		const languageMatches = data.article.content.match(/language-([a-zA-Z]+)/g) || [];
+		const languageMatches = data.article.content.match(/language-([a-zA-Z-]+)/g) || [];
 		const requiredLanguages = [
 			...new Set(languageMatches.map((match) => match.replace('language-', '')))
 		];
@@ -77,24 +77,20 @@
 <main class="flex flex-col gap-14">
 	<!-- These heights are arbitrary and never repeated throughout the website, that's why they're not in tailwind config -->
 
-	<span
-		class="fixed bottom-0 right-0 mr-8 mb-8 border rounded-full p-2 h-10 w-10 flex items-center
-				justify-center group-hover:bg-primary group-hover:text-accent group-hover:translate-y-1
-				transition-transform duration-300"
-	>
+	<div>
 		<ToTop />
-	</span>
+	</div>
 	<div
 		class="font-soehne h-[714px] relative border-b flex flex-col gap-4 justify-end bg-gradient-to-b from-gray-100 to-transparent dark:from-secondary dark:to-transparent px-4 md:px-10 pt-4 pb-6"
 	>
-		<a href="/" aria-label="Home">
-			<span
-				class="absolute top-0 mt-8 border rounded-full p-2 h-10 w-10 flex items-center
-				justify-center group-hover:bg-primary group-hover:text-accent group-hover:translate-y-1
-				transition-transform duration-300"
-			>
-				<ArrowLeft class="h-10 w-10 rounded-full" style="stroke-width: 1.4" />
-			</span>
+		<a
+			href="/"
+			aria-label="Back to Home"
+			class="absolute top-0 mt-8 border rounded-full p-2 h-10 w-10 flex items-center
+           justify-center group-hover:bg-primary group-hover:text-accent group-hover:translate-y-1
+           transition-transform duration-300 cursor-pointer"
+		>
+			<ArrowLeft class="h-10 w-10 rounded-full" style="stroke-width: 1.4" />
 		</a>
 		<!-- leading-[69px] is arbitrary and never repeated throughout the website, that's why it's not in tailwind config -->
 		<h1 class="font-soehne text-3xl md:leading-[69px] md:text-6xl font-medium max-w-[888px]">
@@ -152,7 +148,7 @@
 		[&_ol]:flex [&_ol]:flex-col [&_ol]:py-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:leading-6 [&_ol]:tracking-tight
 		[&_ul]:flex [&_ul]:flex-col [&_ul]:py-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:leading-6 [&_ul]:tracking-tight
 		[&_a]:underline [&_a]:underline-offset-4
-		[&_table]:mb-8 [&_table]:w-2/3
+		[&_table]:mb-6 md:[&_table]:mb-8 [&_table]:w-full md:[&_table]:w-2/3
 		[&_strong]:font-semibold [&_strong]:leading-[24px]
 		[&_em]:font-regular [&_em]:leading-[24px]
 		[&_blockquote]:border-l-4 [&_blockquote]:border-gray-500 [&_blockquote]:pl-4

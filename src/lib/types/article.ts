@@ -5,7 +5,7 @@ const AuthorSchema = z.object({
 	id: z.string(),
 	username: z.string(),
 	full_name: z.string(),
-	bio: z.string(),
+	bio: z.string().optional(),
 	twitter_username: z.string().optional()
 });
 
