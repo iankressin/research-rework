@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ArticleMetadata } from '$lib/types/article';
+	import type { Article } from '$lib/types/article';
 	import { Search, ArrowDown } from 'lucide-svelte';
 	import Badge from './badge/badge.svelte';
 	import Input from './input/input.svelte';
@@ -12,7 +12,7 @@
 		articles,
 		articleCategories
 	}: {
-		articles: ArticleMetadata[];
+		articles: Article[];
 		articleCategories: string[];
 	} = $props();
 	let search = $state('');
@@ -118,25 +118,28 @@
 	{/if}
 </div>
 
-{#snippet articleCard(article: ArticleMetadata)}
+{#snippet articleCard(article: Article)}
 	<div transition:slide={{ duration: 300 }} class="flex flex-col justify-center h-fit">
-		<a href={`/article/${article.slug}`}>
-			<div class="flex flex-col w-full">
+		<div class="flex flex-col w-full">
+			<a href={`/articles/${article.slug}`} class="block">
 				<img src={article.thumb} alt={article.title} class="aspect-square w-full object-cover" />
-			</div>
+			</a>
+		</div>
 
-			<div class="flex flex-col py-6 w-full">
-				<div class="flex gap-1 items-start w-full text-sm">
-					{#each article.categories as category}
-						<Badge variant="outline">{category.name}</Badge>
-					{/each}
-				</div>
-				<h1 class="font-soehne mt-4 text-2xl md:text-3xl font-medium leading-9">{article.title}</h1>
-				<p class="mt-4 leading-6">{article.summary}</p>
-				<p class="mt-4 font-medium">
-					By {article.authors?.map((author) => author.full_name).join(', ')}
-				</p>
+		<div class="flex flex-col py-6 w-full">
+			<div class="flex gap-1 items-start w-full text-sm">
+				{#each article.categories as category}
+					<Badge variant="outline">{category.name}</Badge>
+				{/each}
 			</div>
-		</a>
+			<h1 class="font-soehne mt-4 text-2xl md:text-3xl font-medium leading-9">
+				<a href={`/${article.slug}`} class="hover:underline">{article.title}</a>
+			</h1>
+			<p class="mt-4 leading-6">{article.summary}</p>
+			<p class="mt-4 font-medium">
+				By {article.authors?.map((author) => author.full_name || author.username).join(', ')}
+			</p>
+		</div>
 	</div>
 {/snippet}
+
