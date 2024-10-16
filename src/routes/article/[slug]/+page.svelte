@@ -3,6 +3,8 @@
 	import type { Article } from '$lib/types/article';
 	import { ArrowLeft } from 'lucide-svelte';
 	import type { PageData } from './$types';
+	import { onMount } from 'svelte';
+	import TableOfContents from '$lib/components/ui/TableOfContents.svelte';
 
 	const { data }: { data: PageData } = $props();
 </script>
@@ -71,9 +73,9 @@
 					<span class="self-stretch my-auto">Share on</span>
 					<a href="#" class="gap-1 self-stretch my-auto border-b border-neutral-950">X</a>
 					<span class="self-stretch my-auto">,</span>
-					<a href="#" class="gap-1 self-stretch my-auto whitespace-nowrap border-b">Facebook</a>
+					<a href="#" class="gap-1 self-stretch my-auto border-b">Facebook</a>
 					<span class="self-stretch my-auto">or</span>
-					<a href="#" class="gap-1 self-stretch my-auto whitespace-nowrap border-b">Linkedin</a>
+					<a href="#" class="gap-1 self-stretch my-auto border-b">Linkedin</a>
 				</nav>
 			</div>
 		</div>
@@ -87,21 +89,12 @@
 {/snippet}
 
 {#snippet body(article: Article)}
-	<div class="flex">
-		<div class="w-1/5">
-			<div class="sticky top-0">
-				<ul>
-					<li>Overview</li>
-					<li>Fundamentals</li>
-					<li>Architecture</li>
-					<li>Technology</li>
-					<li>Business</li>
-					<li>Conclusion</li>
-				</ul>
-			</div>
+	<div class="flex flex-col md:flex-row gap-10">
+		<div class="w-full md:w-1/5">
+			<TableOfContents tableOfContents={article.tableOfContents} />
 		</div>
 		<div
-			class="w-3/5 max-w-screen-md leading-8 flex flex-col [&>h1]:text-5xl [&>h1]:font-medium [&>h1]:mb-6 [&>h1]:mt-16 text-secondary
+			class="w-full md:w-3/5 max-w-screen-md leading-8 flex flex-col [&>h1]:text-5xl [&>h1]:font-medium [&>h1]:mb-6 [&>h1]:mt-16 text-primary
             [&>h2]:text-3xl [&>h2]:font-medium [&>h2]:mt-8 [&>h2]:mb-4 [&>p]:text-lg [&>p]:mb-6
             [&>h3]:text-2xl [&>h3]:font-medium [&>h3]:mt-6 [&>h3]:mb-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2
             [&>ul]:text-lg [&>ul]:mb-6
