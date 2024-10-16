@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { ArticleDetail } from '$lib/types/article';
+	import type { ArticleDetail, TableOfContentsItem } from '$lib/types/article';
 	import NewsletterBanner from '$lib/components/ui/NewsletterBanner.svelte';
 	import Footer from '$lib/components/ui/Footer.svelte';
 	import SocialShare from '$lib/components/ui/SocialShare.svelte';
@@ -24,12 +24,6 @@
 
 		Prism.highlightAll();
 	});
-
-	type TableOfContentsItem = {
-		title: string;
-		id: string;
-		children?: TableOfContentsItem[];
-	};
 
 	function generateTocLinks(
 		items?: TableOfContentsItem[],

@@ -19,7 +19,7 @@
 			target="_blank"
 			rel="noopener noreferrer"
 			class="underline underline-offset-4"
-			aria-label="Share on Twitter (opens in a new tab)"
+			aria-label="Share on Twitter"
 		>
 			X,
 		</a>
@@ -29,7 +29,7 @@
 			target="_blank"
 			rel="noopener noreferrer"
 			class="underline underline-offset-4"
-			aria-label="Share on Facebook (opens in a new tab)"
+			aria-label="Share on Facebook"
 		>
 			Facebook
 		</a>
@@ -39,7 +39,7 @@
 			target="_blank"
 			rel="noopener noreferrer"
 			class="underline underline-offset-4"
-			aria-label="Share on LinkedIn (opens in a new tab)"
+			aria-label="Share on LinkedIn"
 		>
 			LinkedIn
 		</a>

@@ -1,32 +1,26 @@
 import { ArticleListResponseSchema, ArticleDetailResponseSchema, type ArticleListItem, type ArticleDetail } from '$lib/types/article';
 
-export const fetchArticles = async (): Promise<ArticleListItem[]> => {
+// Function to handle fetching data from the API
+const fetchFromApi = async (url: string): Promise<unknown> => {
 	try {
-		const res = await fetch('https://cms.2077.xyz/api/articles');
+		const res = await fetch(url);
 		if (!res.ok) {
-			throw new Error(`Error fetching articles: ${res.statusText}`);
+			throw new Error(`Error fetching data: ${res.statusText}`);
 		}
-		const body = await res.json();
-		return ArticleListResponseSchema.parse(body);
+		return await res.json();
 	} catch (error) {
-		console.error('Error in fetchArticles:', error);
-		throw new Error('Failed to fetch articles. Please try again later.');
+		console.error('Error in fetchFromApi:', error);
+		throw new Error('Failed to fetch data. Please try again later.');
 	}
 };
 
+export const fetchArticles = async (): Promise<ArticleListItem[]> => {
+	const body = await fetchFromApi('https://cms.2077.xyz/api/articles');
+	return ArticleListResponseSchema.parse(body);
+};
+
 export const fetchArticleBySlug = async (slug: string): Promise<ArticleDetail> => {
-	try {
-		const res = await fetch(`https://cms.2077.xyz/api/articles/${slug}`);
-
-		if (!res.ok) {
-			throw new Error(`Error fetching article: ${res.statusText}`);
-		}
-
-		const body = await res.json();
-		const parsedResponse = ArticleDetailResponseSchema.parse(body);
-		return parsedResponse.data;
-	} catch (error) {
-		console.error('Error in fetchArticleBySlug:', error);
-		throw new Error('Failed to fetch the article. Please try again later.');
-	}
+	const body = await fetchFromApi(`https://cms.2077.xyz/api/articles/${slug}`);
+	const parsedResponse = ArticleDetailResponseSchema.parse(body);
+	return parsedResponse.data;
 };

@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 // Define Zod schemas
-
 const AuthorSchema = z.object({
 	id: z.string(),
 	username: z.string(),
@@ -15,15 +14,13 @@ const CategorySchema = z.object({
 	name: z.string()
 });
 
-const TableOfContentsItemSchema: z.ZodType<{
-	title: string;
-	id: string;
-	children?: {
-		title: string;
-		id: string;
-		children?: any[];
-	}[];
-}> = z.object({
+export type TableOfContentsItem = {
+    title: string;
+    id: string;
+    children?: TableOfContentsItem[];
+};
+
+const TableOfContentsItemSchema: z.ZodType<TableOfContentsItem> = z.object({
 	title: z.string(),
 	id: z.string(),
 	children: z.array(z.lazy(() => TableOfContentsItemSchema)).optional()
