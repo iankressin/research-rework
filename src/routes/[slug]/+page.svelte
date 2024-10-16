@@ -33,16 +33,30 @@
 		children?: TableOfContentsItem[];
 	};
 
-	function generateTocLinks(items?: TableOfContentsItem[]): string {
+	function generateTocLinks(
+		items?: TableOfContentsItem[],
+		processedItems = new Set<string>(),
+		depth = 0, // Track recursion depth
+		maxDepth = 100 // Arbitrary depth limit to prevent stack overflow
+	): string {
 		// If items are undefined, return an empty string
-		if (!items || items.length === 0) {
+		if (!items || items.length === 0 || depth > maxDepth) {
 			return '';
 		}
 
 		return items
 			.map((item) => {
+				// Check if item has already been processed (circular reference protection)
+				if (processedItems.has(item.id)) {
+					return '';
+				}
+
+				processedItems.add(item.id);
+
 				const childrenLinks =
-					item.children && item.children.length ? `${generateTocLinks(item.children)}` : '';
+					item.children && item.children.length
+						? `${generateTocLinks(item.children, processedItems, depth + 1, maxDepth)}`
+						: '';
 
 				return `<a href="#${item.id}">${item.title}</a>${childrenLinks}`;
 			})

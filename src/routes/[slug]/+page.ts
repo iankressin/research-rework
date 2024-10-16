@@ -10,6 +10,9 @@ export const load: PageLoad = async ({ params }: { params: { slug: string } }) =
     }
     return { article }; // Pass article to the page
   } catch (e) {
-    throw error(404, 'Article not found');
+    if (e instanceof Error) {
+      throw error(500, `Error fetching article: ${e.message}`);
+    }
+    throw error(500, 'Unknown error occurred while fetching the article');
   }
 };
