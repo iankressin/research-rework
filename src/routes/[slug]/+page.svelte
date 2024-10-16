@@ -48,10 +48,10 @@
 			.map((item) => {
 				const childrenLinks =
 					item.children && item.children.length
-						? `<ul>${generateTocLinks(item.children)}</ul>`
+						? `${generateTocLinks(item.children)}`
 						: '';
 
-				return `<li><a href="#${item.id}">${item.title}</a>${childrenLinks}</li>`;
+				return `<a href="#${item.id}">${item.title}</a>${childrenLinks}`;
 			})
 			.join('');
 	}
@@ -126,19 +126,19 @@
 		[&_a]:underline [&_a]:underline-offset-4
 		[&_table]:mb-8 [&_table]:w-2/3
 		[&_strong]:font-semibold [&_strong]:leading-[24px]
-		[&_em]:text-base [&_em]:font-regular [&_em]:leading-[24px]
+		[&_em]:font-regular [&_em]:leading-[24px]
 		[&_blockquote]:border-l-4 [&_blockquote]:border-gray-500 [&_blockquote]:pl-4
 		[&_blockquote]:mb-4 [&_blockquote]:italic
 		[&_em:has(img)]:text-xs [&_em:has(img)]:text-gray-400 [&_em:has(img)]:flex [&_em:has(img)]:flex-col
 		[&_em:has(img)]:items-center [&_em:has(img)]:dark:text-gray-200
 		[&_pre]:overflow-x-auto [&_code]:overflow-x-auto
-        [&_p:has(img):has(em):has(a)]:text-gray-400 [&_p:has(img):has(em):has(a)]:text-center [&_p:has(img):has(em):has(a)]:text-center"
+        [&_p:has(img):has(em):has(a)]:text-gray-400"
 	>
 		<div class="lg:flex flex-col lg:flex-row pb-[80px] max-w-[1344px] justify-center gap-2.5">
 			<!-- Table of Contents Column -->
 			<div class="hidden max-w-[240px] lg:block [&_ul]:pl-0">
 				<nav>
-					<div class="flex flex-col gap-1.5 items-start list-none text-sm space-y-2">
+					<div class="flex flex-col gap-1.5 items-start list-none text-sm space-y-1.5 [&_a]:no-underline">
 						{@html tableOfContents}
 					</div>
 				</nav>
