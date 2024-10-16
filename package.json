@@ -43,7 +43,6 @@
 		"@melt-ui/svelte": "^0.83.0",
 		"bits-ui": "^0.21.16",
 		"clsx": "^2.1.1",
-		"dompurify": "^3.1.7",
 		"lucide-svelte": "^0.451.0",
 		"prismjs": "^1.29.0",
 		"svelte-share-buttons-component": "^3.0.0",

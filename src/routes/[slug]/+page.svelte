@@ -23,7 +23,7 @@
 
 	onMount(() => {
 		currentURL = window.location.href;
-		articleContent = DOMPurify.sanitize(data.article.content);
+		articleContent = data.article.content;
 
 		Prism.highlightAll();
 	});
@@ -51,7 +51,7 @@
 	}
 
 	// Get table of contents from article data
-	let tableOfContents = generateTocLinks(data.article.table_of_contents ?? []);
+	let table_of_contents = generateTocLinks(data.article.table_of_contents ?? []);
 </script>
 
 <main class="flex flex-col gap-14">
@@ -88,7 +88,7 @@
 					</p>
 				</div>
 				<div class="[&_a]:underline [&_a]:underline-offset-4">
-					<p>{@html DOMPurify.sanitize(data.article.acknowledgement ?? '')}</p>
+					<p>{@html data.article.acknowledgement}</p>
 				</div>
 			</div>
 		</div>
@@ -139,7 +139,7 @@
 					<div
 						class="flex flex-col gap-1.5 items-start list-none text-sm space-y-1.5 [&_a]:no-underline"
 					>
-						{@html DOMPurify.sanitize(tableOfContents ?? '')}
+						{@html table_of_contents}
 					</div>
 				</nav>
 			</div>
@@ -147,7 +147,7 @@
 			<!-- Content Column -->
 			<div class="flex-1 max-w-[740px] mx-auto">
 				<div class="flex flex-col">
-					{@html DOMPurify.sanitize(data.article.content ?? '')}
+					{@html data.article.content}
 				</div>
 			</div>
 		</div>
