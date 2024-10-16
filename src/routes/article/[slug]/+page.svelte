@@ -70,22 +70,22 @@
 						</span>
 					</div>
 				</div>
+			</div>
 
-				<div
-					class="flex flex-wrap gap-1 md:gap-10 w-full justify-between items-start w-full tracking-tight max-md:max-w-full"
-				>
-					<time datetime={article.scheduledPublishTime} class="text-gray-500">
-						Published on {article.scheduledPublishTime}
-					</time>
-					<nav class="flex gap-1.5 items-center min-w-[240px]">
-						<span class="self-stretch my-auto">Share on</span>
-						<a href="#" class="gap-1 self-stretch my-auto border-b border-neutral-950">X</a>
-						<span class="self-stretch my-auto">,</span>
-						<a href="#" class="gap-1 self-stretch my-auto border-b">Facebook</a>
-						<span class="self-stretch my-auto">or</span>
-						<a href="#" class="gap-1 self-stretch my-auto border-b">Linkedin</a>
-					</nav>
-				</div>
+			<div
+				class="flex flex-wrap gap-1 md:gap-10 w-full justify-between items-start w-full tracking-tight max-md:max-w-full"
+			>
+				<time datetime={article.scheduledPublishTime} class="text-gray-500">
+					Published on {article.scheduledPublishTime}
+				</time>
+				<nav class="flex gap-1.5 items-center min-w-[240px]">
+					<span class="self-stretch my-auto">Share on</span>
+					<a href="#" class="gap-1 self-stretch my-auto border-b border-neutral-950">X</a>
+					<span class="self-stretch my-auto">,</span>
+					<a href="#" class="gap-1 self-stretch my-auto border-b">Facebook</a>
+					<span class="self-stretch my-auto">or</span>
+					<a href="#" class="gap-1 self-stretch my-auto border-b">Linkedin</a>
+				</nav>
 			</div>
 		</div>
 	</header>
