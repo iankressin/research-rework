@@ -17,12 +17,10 @@
 
 	export let data: { article: ArticleDetail };
 
-	let articleContent = '';
 	let currentURL = '';
 
 	onMount(() => {
 		currentURL = window.location.href;
-		articleContent = data.article.content;
 
 		Prism.highlightAll();
 	});
@@ -74,13 +72,13 @@
 		class="font-soehne h-[714px] relative border-b flex flex-col gap-4 justify-end bg-gradient-to-b from-gray-100 to-transparent dark:from-secondary dark:to-transparent px-4 md:px-10 pt-4 pb-6"
 	>
 		<a href="/" aria-label="Home">
-			<div
+			<span
 				class="absolute top-0 mt-8 border rounded-full p-2 h-10 w-10 flex items-center
 				justify-center group-hover:bg-primary group-hover:text-accent group-hover:translate-y-1
 				transition-transform duration-300"
 			>
 				<ArrowLeft class="h-10 w-10 rounded-full" style="stroke-width: 1.4" />
-			</div>
+			</span>
 		</a>
 		<!-- leading-[69px] is arbitrary and never repeated throughout the website, that's why it's not in tailwind config -->
 		<h1 class="font-soehne text-3xl md:leading-[69px] md:text-6xl font-medium max-w-[888px]">
@@ -107,7 +105,7 @@
 		</div>
 		<div class="font-inter flex flex-col md:flex-row md:justify-between gap-1">
 			<p class="text-gray-400">
-				Published on {new Date(data.article.scheduled_publish_time).toLocaleDateString('en-US', {
+				Published on {new Date(data.article.scheduled_publish_time).toLocaleDateString(undefined, {
 					year: 'numeric',
 					month: 'long',
 					day: 'numeric'
