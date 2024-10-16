@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/ui/Footer.svelte';
 	import SocialShare from '$lib/components/ui/SocialShare.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
+	import ToTop from '$lib/components/ui/ToTop.svelte';
 	import Prism from 'prismjs';
 	import 'prismjs/themes/prism.css';
 
@@ -20,7 +21,7 @@
 	let currentURL = '';
 
 	async function loadPrismLanguages(languages: string[]) {
-		const promises = languages.map(lang => import(`prismjs/components/prism-${lang}`));
+		const promises = languages.map((lang) => import(`prismjs/components/prism-${lang}`));
 		await Promise.all(promises);
 	}
 
@@ -29,7 +30,9 @@
 
 		// Extract languages from the article content using regex
 		const languageMatches = data.article.content.match(/language-([a-zA-Z]+)/g) || [];
-		const requiredLanguages = [...new Set(languageMatches.map(match => match.replace('language-', '')))];
+		const requiredLanguages = [
+			...new Set(languageMatches.map((match) => match.replace('language-', '')))
+		];
 
 		// Dynamically import the required Prism language components
 		await loadPrismLanguages(requiredLanguages);
@@ -74,6 +77,13 @@
 <main class="flex flex-col gap-14">
 	<!-- These heights are arbitrary and never repeated throughout the website, that's why they're not in tailwind config -->
 
+	<span
+		class="fixed bottom-0 right-0 mr-8 mb-8 border rounded-full p-2 h-10 w-10 flex items-center
+				justify-center group-hover:bg-primary group-hover:text-accent group-hover:translate-y-1
+				transition-transform duration-300"
+	>
+		<ToTop />
+	</span>
 	<div
 		class="font-soehne h-[714px] relative border-b flex flex-col gap-4 justify-end bg-gradient-to-b from-gray-100 to-transparent dark:from-secondary dark:to-transparent px-4 md:px-10 pt-4 pb-6"
 	>
