@@ -118,11 +118,14 @@
 	</div>
 
 	<div class="aspect-w-16 aspect-h-9 w-full">
-		<img
-			src={data.article.thumb}
-			alt={data.article.title}
-			class="w-full h-full object-cover mb-4"
-		/>
+		<picture>
+			<source srcset={data.article.thumb} type="image/jpeg" />
+			<img
+				src={data.article.thumb}
+				alt={data.article.title}
+				class="w-full h-full object-cover mb-4"
+			/>
+		</picture>
 	</div>
 	<div
 		class="font-inter text-base leading-[24px] prose max-w-full
@@ -143,7 +146,7 @@
 		[&_em:has(img)]:text-xs [&_em:has(img)]:text-gray-400 [&_em:has(img)]:flex [&_em:has(img)]:flex-col
 		[&_em:has(img)]:items-center [&_em:has(img)]:dark:text-gray-200
 		[&_pre]:overflow-x-auto [&_code]:overflow-x-auto
-        [&_p:has(img):has(em):has(a)]:text-gray-400"
+        [&_p:has(img):has(em):has(a)]:text-gray-400 [&_p:has(img):has(em):has(a)]:text-center"
 	>
 		<div class="lg:flex flex-col lg:flex-row pb-[80px] max-w-[1344px] justify-center gap-2.5">
 			<!-- Table of Contents Column -->
