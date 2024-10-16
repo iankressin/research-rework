@@ -32,7 +32,7 @@ const TableOfContentsItemSchema: z.ZodType<{
 export const ArticleSchema = z.object({
 	id: z.string(),
 	title: z.string(),
-	authors: z.array(z.object({ username: z.string(), full_name: z.string() })).optional(),
+	authors: z.array(AuthorSchema).optional(),
 	content: z.string().optional(),
 	views: z.string().optional(),
 	summary: z.string(),
@@ -53,11 +53,11 @@ const ArticleDetailSchema = z.object({
 	acknowledgement: z.string().optional(),
 	content: z.string(),
 	min_read: z.number(),
-	status: z.string(),
-	views: z.number(),
-	created_at: z.string(),
-	updated_at: z.string(),
-	scheduled_publish_time: z.string(),
+	status: z.enum(['draft', 'ready']),
+	views: z.number().optional(),
+	created_at: z.string().datetime(),
+	updated_at: z.string().datetime(),
+	scheduled_publish_time: z.string().datetime(),
 	table_of_contents: z.array(TableOfContentsItemSchema).optional()
 });
 

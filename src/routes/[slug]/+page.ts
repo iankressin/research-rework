@@ -2,7 +2,7 @@ import { fetchArticleBySlug } from '$lib/services/article.service';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ params }) => {
+export const load: PageLoad = async ({ params }: { params: { slug: string } }) => {
   try {
     const article = await fetchArticleBySlug(params.slug);
     if (!article) {

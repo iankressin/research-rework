@@ -6,13 +6,25 @@
 	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<!--Placed in the head,this script prevents flash of white before dark theme takes effect-->
+	<!-- Placed in the head, this script prevents flash of white before dark theme takes effect -->
 	<script>
-		const darkMode = localStorage.getItem('darkMode');
-		if (darkMode === 'true') {
-			document.documentElement.classList.add('dark');
+		const darkMode = localStorage.getItem("darkMode");
+
+		// Check for system preference if no user preference is set
+		if (darkMode === "true" || (darkMode === null && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+			document.documentElement.classList.add("dark");
 		}
+
+		// Listen for changes in system preference and update class
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+			if (e.matches) {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+		});
 	</script>
+
 	%sveltekit.head%
 </head>
 

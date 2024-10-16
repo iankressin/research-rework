@@ -137,7 +137,7 @@
 			</h1>
 			<p class="mt-4 leading-6">{article.summary}</p>
 			<p class="mt-4 font-medium">
-				By {article.authors?.map((author) => author.full_name).join(', ')}
+				By {article.authors?.map((author) => author.full_name || author.username).join(', ')}
 			</p>
 		</div>
 	</div>

@@ -60,6 +60,7 @@ const config: Config = {
 				soehne: ['Soehne', 'sans-serif']
 			},
 			letterSpacing: {
+				// Custom letter spacing options for tighter text
 				tightest: '-1.5px',
 				tighter: '-1px',
 				tight: '-0.25px'

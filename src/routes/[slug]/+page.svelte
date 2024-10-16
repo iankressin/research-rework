@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/ui/Footer.svelte';
 	import SocialShare from '$lib/components/ui/SocialShare.svelte';
 	import { ArrowLeft } from 'lucide-svelte';
+	import DOMPurify from 'dompurify';
 	import Prism from 'prismjs';
 	import 'prismjs/themes/prism.css';
 
@@ -22,15 +23,10 @@
 
 	onMount(() => {
 		currentURL = window.location.href;
-		articleContent = data.article.content;
+		articleContent = DOMPurify.sanitize(data.article.content);
 
 		Prism.highlightAll();
 	});
-
-	// Watch for changes to the content and trigger Prism highlighting
-	$: if (articleContent) {
-		Prism.highlightAll();
-	}
 
 	type TableOfContentsItem = {
 		title: string;
@@ -47,16 +43,14 @@
 		return items
 			.map((item) => {
 				const childrenLinks =
-					item.children && item.children.length
-						? `${generateTocLinks(item.children)}`
-						: '';
+					item.children && item.children.length ? `${generateTocLinks(item.children)}` : '';
 
 				return `<a href="#${item.id}">${item.title}</a>${childrenLinks}`;
 			})
 			.join('');
 	}
 
-	// Get the table of contents from the article data
+	// Get table of contents from article data
 	let tableOfContents = generateTocLinks(data.article.table_of_contents ?? []);
 </script>
 
@@ -66,11 +60,15 @@
 	<div
 		class="font-soehne h-[714px] relative border-b flex flex-col gap-4 justify-end bg-gradient-to-b from-gray-100 to-transparent dark:from-secondary dark:to-transparent px-4 md:px-10 pt-4 pb-6"
 	>
-		<div
-			class="absolute top-0 mt-8 border rounded-full p-2 h-10 w-10 flex items-center justify-center group-hover:bg-primary group-hover:text-accent group-hover:translate-y-1 transition-transform duration-300"
-		>
-			<ArrowLeft class="h-10 w-10 rounded-full" style="stroke-width: 1.4" />
-		</div>
+		<a href="/" aria-label="Home">
+			<div
+				class="absolute top-0 mt-8 border rounded-full p-2 h-10 w-10 flex items-center
+				justify-center group-hover:bg-primary group-hover:text-accent group-hover:translate-y-1
+				transition-transform duration-300"
+			>
+				<ArrowLeft class="h-10 w-10 rounded-full" style="stroke-width: 1.4" />
+			</div>
+		</a>
 		<!-- leading-[69px] is arbitrary and never repeated throughout the website, that's why it's not in tailwind config -->
 		<h1 class="font-soehne text-3xl md:leading-[69px] md:text-6xl font-medium max-w-[888px]">
 			{data.article.title}
@@ -90,7 +88,7 @@
 					</p>
 				</div>
 				<div class="[&_a]:underline [&_a]:underline-offset-4">
-					<p>{@html data.article.acknowledgement}</p>
+					<p>{@html DOMPurify.sanitize(data.article.acknowledgement ?? '')}</p>
 				</div>
 			</div>
 		</div>
@@ -138,8 +136,10 @@
 			<!-- Table of Contents Column -->
 			<div class="hidden max-w-[240px] lg:block [&_ul]:pl-0">
 				<nav>
-					<div class="flex flex-col gap-1.5 items-start list-none text-sm space-y-1.5 [&_a]:no-underline">
-						{@html tableOfContents}
+					<div
+						class="flex flex-col gap-1.5 items-start list-none text-sm space-y-1.5 [&_a]:no-underline"
+					>
+						{@html DOMPurify.sanitize(tableOfContents ?? '')}
 					</div>
 				</nav>
 			</div>
@@ -147,11 +147,9 @@
 			<!-- Content Column -->
 			<div class="flex-1 max-w-[740px] mx-auto">
 				<div class="flex flex-col">
-					{@html data.article.content}
+					{@html DOMPurify.sanitize(data.article.content ?? '')}
 				</div>
 			</div>
-
-			<div class="hidden lg:block"></div>
 		</div>
 	</div>
 

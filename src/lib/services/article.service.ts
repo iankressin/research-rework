@@ -1,9 +1,17 @@
 import { ArticleListResponseSchema, ArticleDetailResponseSchema, type ArticleListItem, type ArticleDetail } from '$lib/types/article';
 
 export const fetchArticles = async (): Promise<ArticleListItem[]> => {
-	const res = await fetch('https://cms.2077.xyz/api/articles');
-	const body = await res.json();
-	return ArticleListResponseSchema.parse(body);
+	try {
+		const res = await fetch('https://cms.2077.xyz/api/articles');
+		if (!res.ok) {
+			throw new Error(`Error fetching articles: ${res.statusText}`);
+		}
+		const body = await res.json();
+		return ArticleListResponseSchema.parse(body);
+	} catch (error) {
+		console.error('Error in fetchArticles:', error);
+		throw new Error('Failed to fetch articles. Please try again later.');
+	}
 };
 
 export const fetchArticleBySlug = async (slug: string): Promise<ArticleDetail> => {
