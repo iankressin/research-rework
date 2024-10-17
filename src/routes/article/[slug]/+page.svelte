@@ -44,9 +44,11 @@
 	});
 </script>
 
-<div class="flex flex-col gap-14">
+<div class="flex flex-col gap-y-6 md:gap-y-14">
 	{@render header(data.article)}
-	<img src={data.article.thumb} alt={data.article.title} class="w-full h-full object-cover" />
+	<div class="px-3 md:px-12">
+		<img src={data.article.thumb} alt={data.article.title} class="w-full h-full object-cover" />
+	</div>
 	{@render body(data.article)}
 </div>
 
@@ -95,13 +97,10 @@
 						{/each}
 					</div>
 				</div>
-				<div class="flex flex-wrap gap-1.5 items-start mt-1 max-md:max-w-full">
-					<span>Special thanks to</span>
-					<span>.</span>
-				</div>
 			</div>
+
 			<div
-				class="flex flex-wrap gap-10 justify-between items-start mt-6 w-full tracking-tight max-md:max-w-full"
+				class="flex flex-wrap gap-1 md:gap-10 w-full justify-between items-start w-full tracking-tight max-md:max-w-full"
 			>
 				<time datetime={article.scheduledPublishTime} class="text-gray-500">
 					Published on {article.scheduledPublishTime}
@@ -117,19 +116,12 @@
 			</div>
 		</div>
 	</header>
-
-	<style>
-		:global(builder-component) {
-			max-width: none !important;
-		}
-	</style>
 {/snippet}
 
 {#snippet body(article: Article)}
-	<div class="flex flex-col md:flex-row gap-10">
-		<div class="w-full md:w-1/5">
-			<TableOfContents tableOfContents={article.tableOfContents} />
-		</div>
+	<div class="lg:flex lg:gap-14 relative">
+		<TableOfContents tableOfContents={article.tableOfContents} />
+		<div id="toc" class="block lg:hidden"></div>
 		<div
 			class="pb-20 text-primary w-full md:w-3/5 max-w-screen-md leading-8 flex flex-col
 			[&>h1]:text-5xl [&>h1]:font-medium [&>h1]:mb-6 [&>h1]:mt-16 [&_h1]:leading-58 [&_h1]:tracking-tighter
