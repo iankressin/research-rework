@@ -21,11 +21,12 @@
 		<div
 			class=" flex justify-between flex-col p-10 border-b max-md:px-5 bg-gradient-to-b from-gray-100 to-transparent dark:from-secondary dark:to-transparent"
 		>
-			<div
-				class="flex gap-2 justify-center items-center px-2 w-10 h-10 border border-solid rounded-full mb-32 md:mb-44"
+			<a
+				href="/"
+				class="flex gap-2 justify-center items-center px-2 w-10 h-10 border border-solid rounded-full mb-32 md:mb-44 bg-primary-foreground"
 			>
 				<ArrowLeft class="w-6 h-6" />
-			</div>
+			</a>
 			<div class="flex flex-col max-w-full tracking-tight w-[888px]">
 				<div class="flex flex-col pb-4 md:pb-8 w-full">
 					<h1
@@ -92,7 +93,7 @@
 {/snippet}
 
 {#snippet body(article: Article)}
-	<div class="lg:flex flex-col lg:flex-row md:gap-10 lg:gap-14">
+	<div class="lg:flex lg:gap-14 relative">
 		<TableOfContents tableOfContents={article.tableOfContents} />
 		<div id="toc" class="block lg:hidden"></div>
 		<div

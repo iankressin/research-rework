@@ -81,24 +81,22 @@
 	}
 </script>
 
-<div class="hidden lg:block pl-12 w-1/5 sticky">
-	<nav class="sticky pt-8">
-		<ul class="space-y-4 text-sm">
-			{#each tableOfContents as item, index}
-				<li>
-					<a
-						href={`#${item.id}`}
-						class={`block transition-colors duration-200 ${selectedItemIndex === index ? 'font-medium' : 'font-normal'}`}
-						style="opacity: {1 - Math.abs(selectedItemIndex - index) / tableOfContents.length}"
-					>
-						{item.title}
-					</a>
-					{@render subItem(item)}
-				</li>
-			{/each}
-		</ul>
-	</nav>
-</div>
+<ul
+	class="hidden lg:block pl-12 w-1/5 sticky top-10 space-y-4 text-sm max-h-[calc(100vh-6rem)] overflow-y-auto"
+>
+	{#each tableOfContents as item, index}
+		<li>
+			<a
+				href={`#${item.id}`}
+				class={`block transition-colors duration-200 ${selectedItemIndex === index ? 'font-medium' : 'font-normal'}`}
+				style="opacity: {1 - Math.abs(selectedItemIndex - index) / tableOfContents.length}"
+			>
+				{item.title}
+			</a>
+			{@render subItem(item)}
+		</li>
+	{/each}
+</ul>
 
 <!-- This prevent the TOC to be visible before the user scroll past the first heading element-->
 {#if showMobileTOC}
