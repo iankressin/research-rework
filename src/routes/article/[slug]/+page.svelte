@@ -32,15 +32,18 @@
 	const { data }: { data: PageData } = $props();
 
 	onMount(async () => {
-		currentURL = window.location.href;
-		const languageMatches = data.article.content.match(/language-([a-zA-Z-]+)/g) || [];
-		const requiredLanguages = [
-			...new Set(languageMatches.map((match) => match.replace('language-', '')))
-		];
+		try {
+			currentURL = window.location.href;
+			const languageMatches = data.article.content.match(/language-([a-zA-Z-]+)/g) || [];
+			const requiredLanguages = [
+				...new Set(languageMatches.map((match) => match.replace('language-', '')))
+			];
 
-		await loadPrismLanguages(requiredLanguages);
-
-		Prism.highlightAll();
+			await loadPrismLanguages(requiredLanguages);
+			Prism.highlightAll();
+		} catch (error) {
+			console.error('Failed to load Prism languages:', error);
+		}
 	});
 </script>
 
