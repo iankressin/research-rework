@@ -48,7 +48,7 @@ const config: Config = {
 				card: {
 					DEFAULT: 'hsl(var(--card) / <alpha-value>)',
 					foreground: 'hsl(var(--card-foreground) / <alpha-value>)'
-				}
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -61,9 +61,9 @@ const config: Config = {
 				soehne: ['Soehne', 'sans-serif']
 			},
 			letterSpacing: {
-				tightest: '-1.5px',
-				tighter: '-1px',
-				tight: '-0.25px'
+				tighter: '-1.5px',
+				tight: '-1px',
+				normal: '-0.25px'
 			},
 			lineHeight: {
 				'58': '58px',
