@@ -1,16 +1,14 @@
 <!-- TODO: Add links to share buttons -->
 <script lang="ts">
 	import type { Article } from '$lib/types/article';
-	import { ArrowLeft } from 'lucide-svelte';
+	import { ArrowLeft, X } from 'lucide-svelte';
 	import type { PageData } from './$types';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
+	import TableOfContents from '$lib/components/ui/TableOfContents.svelte';
 	import Prism from 'prismjs';
 	import 'prismjs/themes/prism.css';
-	import 'prismjs/components/prism-javascript';
-	import TableOfContents from '$lib/components/ui/TableOfContents.svelte';
 
-	// Supported languages
-	// Import language support
+	// Supported languages imports...
 	import 'prismjs/components/prism-python';
 	import 'prismjs/components/prism-json';
 	import 'prismjs/components/prism-rust';
@@ -22,29 +20,90 @@
 	import 'prismjs/components/prism-markup';
 	import 'prismjs/components/prism-solidity';
 
-	let currentURL = '';
+	let currentURL = $state('');
 
-	async function loadPrismLanguages(languages: string[]) {
-		const promises = languages.map((lang) => import(`prismjs/components/prism-${lang}`));
-		await Promise.all(promises);
-	}
+	let isHighlighting = $state(false);
+	let highlightError = $state<Error | null>(null);
+	let modalOpen = false;
+	let modalImageUrl = '';
+	let contentReady = $state(false);
 
 	const { data }: { data: PageData } = $props();
 
-	onMount(async () => {
-		try {
-			currentURL = window.location.href;
-			const languageMatches = data.article.content.match(/language-([a-zA-Z-]+)/g) || [];
-			const requiredLanguages = [
-				...new Set(languageMatches.map((match) => match.replace('language-', '')))
-			];
+	async function loadPrismLanguages(languages: string[]) {
+		const promises = languages.map(async (lang) => {
+			try {
+				await import(`prismjs/components/prism-${lang}`);
+			} catch (error) {
+				console.warn(`Failed to load language: ${lang}`, error);
+			}
+		});
+		await Promise.all(promises);
+	}
 
-			await loadPrismLanguages(requiredLanguages);
-			Prism.highlightAll();
+	async function highlightCodeBlocks() {
+		if (!contentReady) return;
+
+		isHighlighting = true;
+		highlightError = null;
+
+		try {
+			await tick();
+
+			const codeElements = document.querySelectorAll('pre code');
+			if (codeElements.length === 0) {
+				console.warn('No code elements found');
+				return;
+			}
+
+			const languageMatches = Array.from(codeElements)
+				.map((el) => {
+					const classes = el.className.split(' ');
+					return classes.find((c) => c.startsWith('language-'))?.replace('language-', '');
+				})
+				.filter((lang): lang is string => !!lang);
+
+			const uniqueLanguages = [...new Set(languageMatches)];
+			await loadPrismLanguages(uniqueLanguages);
+
+			await tick();
+
+			requestAnimationFrame(() => {
+				Prism.highlightAll();
+				console.log('Code highlight test complete');
+			});
 		} catch (error) {
-			console.error('Failed to load Prism languages:', error);
+			console.error('Failed to highlight code blocks:', error);
+			highlightError = error instanceof Error ? error : new Error(String(error));
+		} finally {
+			isHighlighting = false;
+		}
+	}
+
+	onMount(() => {
+		currentURL = window.location.href;
+		contentReady = true;
+		highlightCodeBlocks();
+	});
+
+	$effect(() => {
+		if (data.article.content && contentReady) {
+			highlightCodeBlocks();
 		}
 	});
+
+	$effect(() => {
+		const newURL = window.location.href;
+		if (currentURL && currentURL !== newURL) {
+			currentURL = newURL;
+			contentReady = false;
+			setTimeout(() => {
+				contentReady = true;
+				highlightCodeBlocks();
+			}, 100);
+		}
+	});
+
 </script>
 
 <div class="flex flex-col gap-y-6 md:gap-y-14">
@@ -125,6 +184,7 @@
 	<div class="lg:flex lg:gap-14 relative">
 		<TableOfContents tableOfContents={article.tableOfContents} />
 		<div id="toc" class="block lg:hidden"></div>
+
 		<div
 			class="pb-20 text-primary w-full md:w-3/5 max-w-screen-md leading-8 flex flex-col
 			[&>h1]:text-5xl [&>h1]:font-medium [&>h1]:mb-6 [&>h1]:mt-16 [&_h1]:leading-58 [&_h1]:tracking-tighter
@@ -132,13 +192,13 @@
             [&>h3]:text-2xl [&>h3]:font-medium [&>h3]:mt-6 [&>h3]:mb-4 [&_h3]:leading-7 [&_h3]:tracking-tight
             [&>h4]:text-xl [&>h4]:font-medium [&>h4]:mb-3
 			[&>p]:text-base md:[&>p]:text-lg [&_p]:leading-7 [&_p]:tracking-normal [&_p]:mb-4
-			[&_p:has(img)]:mb-2.5 [&_p:has(img)]:text-center [&_p:has(img):has(em)]:text-center [&_p:has(img)]:text-xs [&_p:has(img)]:text-gray-400
+			[&_p:has(img)]:mt-6 [&_p:has(img)]:mb-12 [&_p:has(img)]:text-xs [&_p:has(img)]:text-gray-400
 			[&_a]:underline [&_a]:underline-offset-4
 			[&_strong]:font-semibold [&_strong]:leading-6 [&_strong]:tracking-normal [&_strong]:text-base
 			[&_table]:mb-6 md:[&_table]:mb-8 [&_table]:w-full md:[&_table]:w-2/3
 			[&_em]:leading-6 [&_em]:italic
-			[&_ol]:flex [&_ol]:flex-col [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:leading-7 [&_ol]:tracking-normal
-			[&_ul]:flex [&_ul]:flex-col [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:leading-7 [&_ul]:tracking-normal [&_ul]:text-base
+			[&_ol]:flex [&_ol]:flex-col [&_ol]:gap-y-1 [&_ol]:mb-6 [&_ol]:ml-6 [&_ol]:text-base [&_ol]:list-decimal [&_ol]:leading-6 [&_ol]:tracking-normal
+			[&_ul]:flex [&_ul]:flex-col [&_ul]:gap-y-1 [&_ul]:mb-6 [&_ul]:ml-6 [&_ul]:text-base [&_ul]:list-disc [&_ul]:leading-6 [&_ul]:tracking-normal
             [&>li]:leading-8
 			[&>a]:underline
 			[&_img]:mx-auto [&_img]:block [&_img]:pb-2.5
