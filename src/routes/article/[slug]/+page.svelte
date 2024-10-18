@@ -5,6 +5,7 @@
 	import type { PageData } from './$types';
 	import { onMount, tick } from 'svelte';
 	import TableOfContents from '$lib/components/ui/TableOfContents.svelte';
+	import { Lightbox, LightboxGallery, GalleryThumbnail, GalleryImage } from 'svelte-lightbox';
 	import Prism from 'prismjs';
 	import 'prismjs/themes/prism.css';
 
@@ -20,16 +21,18 @@
 	import 'prismjs/components/prism-markup';
 	import 'prismjs/components/prism-solidity';
 
+	// Initialize stores
 	let currentURL = $state('');
-
 	let isHighlighting = $state(false);
 	let highlightError = $state<Error | null>(null);
-	let modalOpen = false;
-	let modalImageUrl = '';
 	let contentReady = $state(false);
+	let lightboxImages = $state<string[]>([]);
+	let lightboxIndex = $state(0);
+	let showLightbox = $state(false);
 
 	const { data }: { data: PageData } = $props();
 
+	// Function to load Prism languages
 	async function loadPrismLanguages(languages: string[]) {
 		const promises = languages.map(async (lang) => {
 			try {
@@ -41,6 +44,7 @@
 		await Promise.all(promises);
 	}
 
+	// Function to highlight code blocks
 	async function highlightCodeBlocks() {
 		if (!contentReady) return;
 
@@ -80,11 +84,69 @@
 		}
 	}
 
+	// Function to extract images from content
+	function extractImagesFromContent(content: string): string[] {
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(content, 'text/html');
+		const images = Array.from(doc.querySelectorAll('img')).map((img) => img.src);
+		return images;
+	}
+
+	// Function to update image event listeners
+	function updateImageEventListeners() {
+		const container = document.getElementById('content-container');
+		if (container) {
+			const images = container.querySelectorAll('img');
+			images.forEach((img, index) => {
+				img.addEventListener('click', () => {
+					console.log('element clicked', img.src);
+					lightboxIndex = lightboxImages.indexOf(img.src);
+					showLightbox = true;
+				});
+			});
+		}
+	}
+
+	// OnMount function
 	onMount(() => {
 		currentURL = window.location.href;
 		contentReady = true;
 		highlightCodeBlocks();
+
+		if (data.article.content) {
+			lightboxImages = extractImagesFromContent(data.article.content);
+		}
+
+		updateImageEventListeners();
+
+		const observer = new MutationObserver(() => {
+			updateImageEventListeners();
+		});
+
+		const container = document.getElementById('content-container');
+		if (container) {
+			observer.observe(container, { childList: true, subtree: true });
+		}
+
+		return () => {
+			observer.disconnect();
+		};
 	});
+
+	// Cleanup function to remove event listeners
+	function cleanup() {
+		const container = document.getElementById('content-container');
+		if (container) {
+			const images = container.querySelectorAll('img');
+			images.forEach((img) => {
+				img.removeEventListener('click', () => {
+					console.log('element clicked', img.src);
+					lightboxIndex = lightboxImages.indexOf(img.src);
+					showLightbox = true;
+				});
+			});
+		}
+	}
 
 	$effect(() => {
 		if (data.article.content && contentReady) {
@@ -103,7 +165,6 @@
 			}, 100);
 		}
 	});
-
 </script>
 
 <div class="flex flex-col gap-y-6 md:gap-y-14">
@@ -186,6 +247,7 @@
 		<div id="toc" class="block lg:hidden"></div>
 
 		<div
+			id="content-container"
 			class="pb-20 text-primary w-full md:w-3/5 max-w-screen-md leading-8 flex flex-col
 			[&>h1]:text-5xl [&>h1]:font-medium [&>h1]:mb-6 [&>h1]:mt-16 [&_h1]:leading-58 [&_h1]:tracking-tighter
             [&>h2]:text-3xl [&>h2]:font-medium [&>h2]:mt-8 [&>h2]:mb-4 [&_h2]:leading-9 [&_h2]:tracking-tight

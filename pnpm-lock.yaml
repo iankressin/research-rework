@@ -78,6 +78,9 @@ importers:
       svelte-check:
         specifier: ^4.0.0
         version: 4.0.4(svelte@5.0.0-next.263)(typescript@5.6.3)
+      svelte-lightbox:
+        specifier: ^1.1.5
+        version: 1.1.5(svelte@5.0.0-next.263)
       tailwindcss:
         specifier: ^3.4.13
         version: 3.4.13
@@ -1430,6 +1433,11 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
+
+  svelte-lightbox@1.1.5:
+    resolution: {integrity: sha512-l9o3f+TYwnYdV44aGZ49M1eL5rbZdzXVRB1VgLBicqimvn9it8eTOZaG656Pcbro2KLHDeB+l2Ksk1/6K8vF9Q==}
+    peerDependencies:
+      svelte: ^3.25.0 || ^4.0.0
 
   svelte@5.0.0-next.263:
     resolution: {integrity: sha512-vusQUBK3fIazd8D1uDP/r2y9aHNCKwmsG8rjOFQ5dgx7w/uuHF29tt+onVFlbRgaudlFwpjLNo3OVylrhD6zoQ==}
@@ -2881,6 +2889,10 @@ snapshots:
       postcss: 8.4.47
       postcss-scss: 4.0.9(postcss@8.4.47)
     optionalDependencies:
+      svelte: 5.0.0-next.263
+
+  svelte-lightbox@1.1.5(svelte@5.0.0-next.263):
+    dependencies:
       svelte: 5.0.0-next.263
 
   svelte@5.0.0-next.263:
